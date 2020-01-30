@@ -24,8 +24,10 @@ if ($args[0] -eq "watch") {
     $env:PROJECT_ROOT = $project_root
     $env:MODULE_DIR = $module_dir
     emacs --version
-    emacs --batch --directory "$module_dir" `
-      -l ert `
-      -l "$project_root\test-module\tests\main.el" `
-      -f ert-run-tests-batch-and-exit
+    emacs --batch `
+        --module-assertions `
+        --directory "$module_dir" `
+        -l ert `
+        -l "$project_root\test-module\tests\main.el" `
+        -f ert-run-tests-batch-and-exit
 }
